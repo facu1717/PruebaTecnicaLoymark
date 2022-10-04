@@ -43,7 +43,7 @@ namespace PruebaTecnicaLoymark.Controllers
                 return StatusCode(500, "Algo salió mal guardando al usuario");
             }
 
-            _activitiesRepository.RegisterActivity(user, "Creacion de Usuario");
+            _activitiesRepository.RegisterActivity(user, "Creación de Usuario");
 
             return Ok();
         }
