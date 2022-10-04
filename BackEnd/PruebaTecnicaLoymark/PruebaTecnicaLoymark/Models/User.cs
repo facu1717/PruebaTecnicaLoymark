@@ -25,6 +25,18 @@ namespace PruebaTecnicaLoymark.Models
             ResidenceCountry = newUserDto.ResidenceCountry;
             ContactInfo = newUserDto.ContactInfo;
         }
+
+        public User(UpdateUserDto userDto)
+        {
+            Id = userDto.Id;
+            Name = userDto.Name;
+            Surname = userDto.Surname;
+            DateOfBirth = userDto.DateOfBirth;
+            Email = userDto.Email;
+            PhoneNumber = userDto.PhoneNumber;
+            ResidenceCountry = userDto.ResidenceCountry;
+            ContactInfo = userDto.ContactInfo;
+        }
     }
 
 

@@ -41,10 +41,8 @@ namespace PruebaTecnicaLoymark.Repository
 
         public User UpdateUser(UpdateUserDto userDto)
         {
-            User user = GetById(userDto.Id);
-
-            if(user == null) return null;
-
+            User user = new User(userDto);
+            
             _bd.User.Update(user);
 
             if (!Save()) return null;
