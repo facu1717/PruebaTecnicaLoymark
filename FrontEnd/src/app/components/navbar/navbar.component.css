@@ -1,0 +1,11 @@
+.navbar {
+    background-color: #fd842e;
+}
+
+.navbar__title {
+    font-weight: bold;
+}
+
+.navbar__spacer {
+    flex: 1 1 auto;
+}

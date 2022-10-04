@@ -1,0 +1,97 @@
+<section class="users">
+    <div class="users__container mat-elevation-z4">
+
+        <div class="form">
+            <mat-form-field appearance="standard">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+              </mat-form-field>
+
+            <div class="users__new">
+                <button mat-button color="primary" (click)="newUser()">
+                    <span>Nuevo Usuario</span>
+                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+            <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- ID Column -->
+            
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="surname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Apellido</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.surname}}</mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Correo Electronico</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dateOfBirth">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Nacimiento</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.dateOfBirth | date: 'YYYY-MM-dd'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="phoneNumber">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.phoneNumber != undefined ? row.phoneNumber : '-'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="countryResidence">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Pais de Residencia</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.residenceCountry}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="contactInfo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>¿Recibir informacion?</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.contactInfo ? 'Si' : 'No'}}</mat-cell>
+            </ng-container>
+
+            <!-- actions -->
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>
+                    Acciones
+                </mat-header-cell>
+
+                <mat-cell *matCellDef="let row; let i=index;">
+                    <button mat-icon-button color="accent" (click)="updateUser(row)">
+                        <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="accent">
+                        <mat-icon aria-label="Delete" (click)="deleteUser(row)">delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="usersCols"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: usersCols;"></mat-row>
+        </mat-table>
+
+
+        <div class="no-results" [style.display]="users.length == 0 ? '' : 'none'">
+            No results
+        </div>
+
+        <mat-paginator 
+            #paginator 
+            [length]="users.length" 
+            [pageIndex]="0" 
+            [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+    </div>
+</section>
+<ngx-spinner type="ball-spin" size="medium">
+</ngx-spinner>

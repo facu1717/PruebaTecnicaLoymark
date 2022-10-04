@@ -1,0 +1,11 @@
+.user-modal {
+    width: 50vw;
+    height: 50vh;
+}
+
+.user-modal__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin-top: 2rem;
+}

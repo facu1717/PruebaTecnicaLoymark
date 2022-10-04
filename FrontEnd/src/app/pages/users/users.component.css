@@ -1,0 +1,14 @@
+.users__container {
+    margin: 0.5rem;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.users__new {
+    margin-top: 0.5rem;
+
+}

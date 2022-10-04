@@ -1,0 +1,56 @@
+<section class="user-modal">
+    <h1 mat-dialog-title>Nuevo usuario</h1>
+    <form mat-dialog-content class="user-modal__content" [formGroup]="userModalForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name" onkeydown="return /[a-z, ]/i.test(event.key)">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="surname" onkeydown="return /[a-z, ]/i.test(event.key)">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Correo Electronico</mat-label>
+            <input matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="phoneNumber" maxlength="10" (keypress)="utils.onlyNumbers($event)">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Pais</mat-label>
+            <mat-select formControlName="residenceCountry">
+                <mat-option *ngFor="let country of countries" [value]="country.code">
+                    {{country.name}} - {{country.code}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>¿Desea recibir información?</mat-label>
+            <mat-select formControlName="contactInfo">
+                <mat-option [value]="true">
+                    Si
+                </mat-option>
+                <mat-option [value]="false">
+                    No
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancelar</button>
+        <button mat-button cdkFocusInitial (click)="sendData()">Guardar</button>
+    </div>
+</section>
+<ngx-spinner
+bdColor="rgba(0,0,0,0)"
+type="ball-spin"
+size="medium">
+</ngx-spinner>
